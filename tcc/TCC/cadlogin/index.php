@@ -1,8 +1,12 @@
+<?php 
+	require_once '../Classes/usuarios.php';
+	$u = new Usuario;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Login V13</title>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -36,38 +40,38 @@
 			<div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
 
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="POST">
 					<span class="login100-form-title p-b-59">
-						Sign Up
+						Cadastre-se
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate="Name is required">
-						<span class="label-input100">Full Name</span>
-						<input class="input100" type="text" name="name" placeholder="Name...">
+					<div class="wrap-input100 validate-input" data-validate="Nome é necessário">
+						<span class="label-input100">Nome Completo</span>
+						<input class="input100" type="text" name="nome" placeholder="Nome..." maxlength="40">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate = "Exemplo de e-mail válido: ex@abc.xyz">
 						<span class="label-input100">Email</span>
-						<input class="input100" type="text" name="email" placeholder="Email addess...">
+						<input class="input100" type="email" name="email" placeholder="endereço de email..." maxlength="40">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Username is required">
-						<span class="label-input100">Username</span>
-						<input class="input100" type="text" name="username" placeholder="Username...">
+					<div class="wrap-input100 validate-input" data-validate="Matricula obrigatoria">
+						<span class="label-input100">Número de Matricula</span>
+						<input class="input100" type="number" name="matricula" placeholder="número da matricula" maxlength="30">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="text" name="pass" placeholder="*************">
+					<div class="wrap-input100 validate-input" data-validate = "Senha Obrigatória">
+						<span class="label-input100">Senha</span>
+						<input class="input100" type="password" name="senha" placeholder="*************" maxlength="20">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Repeat Password is required">
-						<span class="label-input100">Repeat Password</span>
-						<input class="input100" type="text" name="repeat-pass" placeholder="*************">
+					<div class="wrap-input100 validate-input" data-validate = "repetir senha obrigatório">
+						<span class="label-input100">Repita a senha</span>
+						<input class="input100" type="password" name="confsenha" placeholder="*************" maxlength="20">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -76,9 +80,9 @@
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 							<label class="label-checkbox100" for="ckb1">
 								<span class="txt1">
-									I agree to the
+									Eu concordo com os 
 									<a href="#" class="txt2 hov1">
-										Terms of User
+										Termos de uso
 									</a>
 								</span>
 							</label>
@@ -91,16 +95,49 @@
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								Sign Up
+								Cadastrar
 							</button>
 						</div>
 
-						<a href="#" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
-							Sign in
+						<a href="../Login/index.php" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+							Entrar
 							<i class="fa fa-long-arrow-right m-l-5"></i>
 						</a>
 					</div>
 				</form>
+				<?php 
+				// verificar se clicou no botao
+				if(isset($_POST['nome']))
+				{
+					$nome = addslashes($_POST['nome']);
+					$matricula = addslashes($_POST['matricula']);
+					$email = addslashes($_POST['email']);
+					$senha = addslashes($_POST['senha']);
+					$confimarSenha = addslashes($_POST['confsenha']);
+					//verificar se esta preenchido
+					if (!empty($nome) && !empty($matricula) && !empty($email) && !empty($senha) && !empty($confimarSenha)) {
+						$u->conectar ("projeto_tcc","localhost","root","");
+						if ($u->msgErro == "") {//conferir se esta tudo certo
+							//verificar se as senhas são iguais
+							if ($senha == $confimarSenha) {
+								if($u->cadastrar($nome, $matricula, $email, $senha)){
+									echo "Cadastrado com Sucesso! Acesse para entrar!";
+								}else{
+									echo "email ja cadastrado";
+								}
+							}else{
+								echo "Senha e confirmar senha não correspondem!";
+							}
+							
+						}else{
+							echo "Erro: ". $u->msgErro;
+						}
+					}else{
+						echo "Preencha todos os campos!";
+					}
+				}
+
+				?>
 			</div>
 		</div>
 	</div>
