@@ -1,5 +1,10 @@
+<?php
+require_once '../Classes/usuarios.php';
+$u = new Usuario;			
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<title>Login</title>
 	<meta charset="UTF-8">
@@ -32,12 +37,9 @@
 
 				<form class="login100-form validate-form" method="POST">
 					<span class="login100-form-title">
-						Member Login
+						Entrar
 					</span>
-					<div class="alert alert-danger" role="alert">
-						<b>ERRO:</b> Usuário ou senha inválidos
-					</div>
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate = "Emial válido é necssario: ex@abc.xyz">
 						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -45,8 +47,8 @@
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="senha" placeholder="Password">
+					<div class="wrap-input100 validate-input" data-validate = "Senha é obrigatória">
+						<input class="input100" type="password" name="senha" placeholder="Senha">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -55,19 +57,18 @@
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Entrar
 						</button>
 					</div>
 					
 					<div class="text-center p-t-12">
 						<span class="txt1">
-							Forgot
+							Esqueceu
 						</span>
 						<a class="txt2" href="#">
-							Username / Password?
+							a senha?
 						</a>
 					</div>
-					
 					<div class="text-center p-t-136">
 						<a class="txt2" href="../cadlogin/index.php">
 							Create your Account
@@ -75,8 +76,48 @@
 						</a>
 					</div>
 				</form>
-				<?php 
-
+				<?php
+					if(isset($_POST['email']))
+					{
+						$email = addslashes($_POST['email']);
+						$senha = addslashes($_POST['senha']);
+						
+						if (!empty($email) && !empty($senha)) 
+						{
+							$u->conectar ("projeto_tcc","localhost","root","");
+							if ($u->msgErro == "")
+							{
+								if($u->logar($email, $senha))
+								{
+									header("location: ../edustage/index.php");//encaminhar a pagina do curso
+								}
+								else
+								{
+									?>
+										<div class="alert alert-danger" role="alert">
+											<b>ERRO:</b> Usuário ou senha inválidos
+										</div>
+									<?php
+								}
+							}
+							else
+							{
+								?>
+								<div class="alert alert-danger">
+									<?php echo "ERRO: . $u->msgErro;" ?>
+								</div>
+								<?php
+							}
+						}
+						else
+						{
+							?>
+							<div class="alert alert-warning">
+								Preencha todos os campos!
+							</div>
+							<?php
+						}
+					}	
 				?>
 			</div>
 		</div>
@@ -104,3 +145,4 @@
 
 </body>
 </html>
+

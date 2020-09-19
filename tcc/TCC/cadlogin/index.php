@@ -78,14 +78,7 @@
 					<div class="flex-m w-full p-b-33">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								<span class="txt1">
-									Eu concordo com os 
-									<a href="#" class="txt2 hov1">
-										Termos de uso
-									</a>
-								</span>
-							</label>
+							
 						</div>
 
 						
@@ -121,12 +114,24 @@
 							//verificar se as senhas são iguais
 							if ($senha == $confimarSenha) {
 								if($u->cadastrar($nome, $matricula, $email, $senha)){
-									echo "Cadastrado com Sucesso! Acesse para entrar!";
+									?>
+									<div class="alert alert-success" role="alert">
+										Cadastrado com Sucesso! Acesse para entrar
+									</div>
+									<?php
 								}else{
-									echo "email ja cadastrado";
+									?>
+									<div class="alert alert-warning" role="alert">
+										email já cadastrado
+									</div>
+									<?php
 								}
 							}else{
-								echo "Senha e confirmar senha não correspondem!";
+								?>
+								<div class="alert alert-danger">
+									echo "Senha e confirmar senha não correspondem!";
+								</div>
+								<?php
 							}
 							
 						}else{

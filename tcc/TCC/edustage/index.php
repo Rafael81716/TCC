@@ -1,3 +1,12 @@
+<?php 
+  session_start();
+  if(!isset($_SESSION['id_usuario']))
+  {
+    header("location: ../Login/index.php");
+    exit;
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -98,6 +107,9 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="sair.php">Sair</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link search" id="search">

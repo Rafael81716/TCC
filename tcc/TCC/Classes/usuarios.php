@@ -1,5 +1,6 @@
 <?php 
 //criando a classe usuario
+
 class Usuario{
     private $pdo;
     public $msgErro = "";// caso esteja vazio ta tudo certo
@@ -46,7 +47,7 @@ class Usuario{
         $sql = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE 
         email = :e AND senha = :s");
         $sql->bindValue(":e", $email);
-        $sql->bindValue(":s", $senha);
+        $sql->bindValue(":s", md5($senha));
         $sql->execute();
         if ($sql->rowCount() > 0) {
             //entre no sistema (sessao)
