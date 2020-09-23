@@ -17,7 +17,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="img/favicon.png" type="image/png" />
-    <title>Edustage Education</title>
+    <title>HyperTextAdmin</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/flaticon.css" />
@@ -54,7 +54,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand logo_h" href="index.html"
+            <a class="navbar-brand logo_h" href="index.php"
               ><img src="img/logo.png" alt=""
             /></a>
             <button
@@ -76,10 +76,10 @@
             >
               <ul class="nav navbar-nav menu_nav ml-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home</a>
+                  <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="about-us.html">About</a>
+                  <a class="nav-link" href="about-us.html">Sobre</a>
                 </li>
                 <li class="nav-item submenu dropdown">
                   <a
@@ -89,15 +89,15 @@
                     role="button"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    >Pages</a
+                    >Páginas</a
                   >
                   <ul class="dropdown-menu">
                     <li class="nav-item">
-                      <a class="nav-link" href="courses.html">Courses</a>
+                      <a class="nav-link" href="courses.html">Disciplinas</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="course-details.html"
-                        >Course Details</a
+                        >Detalhes das disciplinas</a
                       >
                     </li>
                     <li class="nav-item">
@@ -106,7 +106,7 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact</a>
+                  <a class="nav-link" href="contact.html">Contato</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="sair.php">Sair</a>

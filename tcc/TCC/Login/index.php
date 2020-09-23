@@ -6,7 +6,7 @@ $u = new Usuario;
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Login</title> 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -71,7 +71,7 @@ $u = new Usuario;
 					</div>
 					<div class="text-center p-t-136">
 						<a class="txt2" href="../cadlogin/index.php">
-							Create your Account
+							Crie seu cadastro
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>
